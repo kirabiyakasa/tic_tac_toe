@@ -109,7 +109,6 @@ def play_game(game, players)
   while game.win_conditions.values.any? { |value| value.length < 3 }
     play_round(game, players)
   end
-
 end
 
 def setup_board(players)
@@ -125,11 +124,15 @@ end
 def choose_x_or_o(player1_name)
   puts "Choose x or o for #{player1_name}."
   selection = gets.chomp
+  until selection.downcase == "x" || selection.downcase == "o"
+    puts "Please enter a valid input."
+    selection = gets.chomp
+  end
+
   if selection.downcase == "o"
     return "o", "x"
   elsif selection.downcase == "x"
     return "x", "o"
-  else choose_x_or_o(player1_name)
   end
 end
 
